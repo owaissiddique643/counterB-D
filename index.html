@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            text-align: center;
+            border: 5px;
+        }
+        .main{
+            text-align: right;
+            background-color: rgb(185, 121, 245);
+            color: rgb(126, 223, 29);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+    <table width="400"  cellpadding="5" >
+        <tr>
+            <td colspan="3"><input type="date" id="date"></td>
+            <td colspan="2"><button onclick="birth()">Check</button></td>
+        </tr>
+        <tr>
+            <td>Months</td>
+            <td>Days</td>
+            <td>Hour</td>
+            <td>Minutes</td>
+            <td>Seconds</td>
+        </tr>
+        <tr>
+            <td id="month"></td>
+            <td id="day"></td>
+            <td id="hour"></td>
+            <td id="min"></td>
+            <td id="sec"></td>
+        </tr>
+    </table>
+</div>
+    <script>
+        function birth() {
+            var birth = document.getElementById('date').value;
+            var birthDate = new Date(birth).getTime();
+            var now = new Date().getTime();
+
+            var totalSec = (birthDate - now)/1000;
+            
+            // console.log(remain)
+
+            var sec = Math.floor(totalSec)%60
+            var min = Math.floor(totalSec/60)%60
+            var hour = Math.floor(totalSec/(60*60))%24
+            var day = Math.floor(totalSec/3600/24)
+            var month = Math.floor(totalSec/3600/24/30)
+
+            // document.getElementById('month').innerHTML = month 
+            document.getElementById('month').innerHTML = month
+            document.getElementById('day').innerHTML = day
+            document.getElementById('hour').innerHTML = hour
+            document.getElementById('min').innerHTML = min
+            document.getElementById('sec').innerHTML = sec
+        }
+        setInterval(birth,1000)
+    </script>
+</body>
+
+</html>
